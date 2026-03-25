@@ -56,7 +56,7 @@ pip install -r requirements.txt
 ```
 flask run
 ```
-The app will start on http://127.0.0.1:5000/.
+The app will start on http://127.0.0.1:5003/.
 
 ## Database Migrations
 Alembic is used to manage schema changes.
