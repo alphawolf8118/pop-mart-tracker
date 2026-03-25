@@ -7,6 +7,8 @@
 
 A lightweight Flask application for tracking Pop Mart blind‑box collections. Each collection can contain multiple figurines, and the app provides a simple interface for adding, editing, and organizing them.
 
+Product images belong to Pop Mart and are used here only to visually represent items in my personal collection tracker.
+
 This project started as a simple Pop Mart tracker, similar in structure to my TCG tracker but built with Flask instead of Django. I used SQLAlchemy to model collections and figurines cleanly, and Alembic handled schema changes as the project evolved.
 
 ## Features
