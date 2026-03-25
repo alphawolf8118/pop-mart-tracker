@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-4xl font-bold mb-8">{{ collection.title }}</h1>
+
+<form action="{{ url_for('add_figurine', coll_id=collection.id) }}" method="POST" class="mb-8 bg-white p-6 rounded shadow">
+    <input type="text" name="name" placeholder="Figurine Name" required class="border p-2 mr-2">
+    <input type="url" name="image_url" placeholder="Image URL" required class="border p-2 mr-2">
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Add Figurine</button>
+</form>
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+    {% for fig in figurines %}
+    <div class="bg-white rounded-lg shadow text-center relative">
+        <div class="flex justify-center bg-white rounded-t-lg py-8">
+            <img src="{{ fig.image_url }}" alt="{{ fig.name }}" 
+            class="max-w-full max-h-96 object-contain">
+    </div>
+        
+        <div class="p-4 border-t border-gray-200">
+            <h3 class="font-medium text-lg mb-4">{{ fig.name }}</h3>
+            
+            <!-- Indicators with safe spacing -->
+            <div class="relative mb-10 min-h-12">
+                {% if fig.collected %}
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-full flex items-center shadow-lg z-10">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                    Collected
+                </div>
+                {% endif %}
+                
+                {% if fig.owned_count > 1 %}
+                <span class="absolute top-0 left-2 bg-yellow-500 text-white px-3 py-1 rounded-full text-sm z-10">
+                    {{ fig.owned_count }}× duplicates
+                </span>
+                {% endif %}
+            </div>
+            
+            <!-- New button layout -->
+            <div class="mt-4 space-y-3">
+                <!-- Row 1: Got One + Remove One -->
+                <div class="grid grid-cols-2 gap-3">
+                    <a href="{{ url_for('toggle', fig_id=fig.id) }}" 
+                    class="bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 font-medium text-center">
+                        + Got One
+                    </a>
+                    
+                    {% if fig.owned_count > 0 %}
+                    <a href="{{ url_for('remove_duplicate', fig_id=fig.id) }}" 
+                    class="bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 font-medium text-center">
+                        – Remove One
+                    </a>
+                    {% else %}
+                    <div class="bg-gray-200 py-3 rounded-lg"></div>
+                    {% endif %}
+                </div>
+                
+                <!-- Row 2: Edit + Delete -->
+                <div class="grid grid-cols-2 gap-3">
+                    <a href="{{ url_for('edit_figurine', fig_id=fig.id) }}" 
+                    class="bg-yellow-500 text-white py-3 rounded-lg hover:bg-yellow-600 font-medium text-center">
+                        Edit
+                    </a>
+                    
+                    <a href="{{ url_for('delete_figurine', fig_id=fig.id) }}" 
+                    class="bg-gray-700 text-white py-3 rounded-lg hover:bg-red-800 font-medium text-center">
+                        Delete
+                    </a>
+                </div>
+            </div>
+            
+            <p class="mt-6 text-lg font-semibold text-gray-700">Owned: {{ fig.owned_count }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# SQLite database
+instance/*.db
+*.db
+
+# Flask instance folder (contains config + DB)
+instance/
+
+# Environment variables
+.env
+*.env
+
+# Virtual environment
+venv/
+.venv/
+
+# Uploaded images
+static/uploads/
+
+# Alembic migration cache
+migrations/__pycache__/
