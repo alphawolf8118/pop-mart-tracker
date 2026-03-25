@@ -1,8 +1,9 @@
 # Pop Mart Collection Tracker
 
-![Screenshot](screenshots/Pop Mart Collection Main Page.png)
+![Screenshot](screenshots/Pop%20Mart%20Collection%20Main%20Page.png)
 
-![Screenshot](screenshots/Pop Mart Collection Page.png)
+![Screenshot](screenshots/Pop%20Mart%20Collection%20Page.png)
+
 
 A lightweight Flask application for tracking Pop Mart blind‑box collections. Each collection can contain multiple figurines, and the app provides a simple interface for adding, editing, and organizing them.
 
